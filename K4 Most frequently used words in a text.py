@@ -8,7 +8,16 @@ def top_3_words(text):
     result = sorted(sec.items(), key=lambda item: item[1], reverse=True)
     return([result[i][0] for i in range(3 if len(result)>=3 else len(result))])
 
+'''
+Чужое решение
+from collections import Counter
+import re
 
+
+def top_3_words(text):
+    c = Counter(re.findall(r"[a-z']+", re.sub(r" '+ ", " ", text.lower())))
+    return [w for w,_ in c.most_common(3)]
+'''
 
 assert top_3_words("a a a  b  c c  d d d d  e e e e e") == ["e", "d", "a"]
 assert top_3_words("e e e e DDD ddd DdD: ddd ddd aa aA Aa, bb cc cC e e e") == ["e", "ddd", "aa"]
